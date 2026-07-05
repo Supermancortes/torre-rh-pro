@@ -17,6 +17,7 @@ const [edad, setEdad] = useState("");
 const [reingreso, setReingreso] = useState("");
 const [infonavit, setInfonavit] = useState("");
 const [empresas, setEmpresas] = useState<Empresa[]>([]);
+const [estado, setEstado] = useState<Vacante["estado"]>("Activa");
 
 const [empresaId, setEmpresaId] = useState(0);
 const [vacantes, setVacantes] = useState<Vacante[]>([]);
@@ -60,6 +61,7 @@ const nuevaVacante: Vacante = {
   reingreso: reingreso,
   infonavit: infonavit,
 resumen: resumen,
+estado: estado,
 
 };
 
@@ -160,10 +162,38 @@ localStorage.setItem(
         <div className="mb-8">
           <label className="block font-semibold mb-2">
             Turno
+
            <div className="mb-6">
   <label className="block font-semibold mb-2">
     Resumen de la Vacante
   </label>
+<div className="mb-6">
+
+  <label className="block font-semibold mb-2">
+    Estado de la Vacante
+  </label>
+
+  <select
+    value={estado}
+    onChange={(e) =>
+  setEstado(e.target.value as Vacante["estado"])
+}
+    className="w-full border rounded-lg p-3"
+  >
+
+    <option>Activa</option>
+
+    <option>Reclutamiento Intensivo</option>
+
+    <option>Pausada</option>
+
+    <option>Cubierta</option>
+
+    <option>Cancelada</option>
+
+  </select>
+
+</div>
 
   <textarea
     value={resumen}
